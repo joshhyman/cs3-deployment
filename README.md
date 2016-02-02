@@ -14,3 +14,28 @@ https://cloud.google.com/container-engine/docs/before-you-begin
   * `gcloud container clusters get-credentials cluster-1`
 * see defaults
   * `gcloud config list`
+* install docker: https://docs.docker.com/engine/installation/
+  * `sudo apt-get install docker-engine`
+  * `sudo docker run hello-world`
+* add a docker group:
+  https://docs.docker.com/engine/installation/ubuntulinux/#create-a-docker-group
+  * `sudo usermod -aG docker joshh`
+  * logout and back in :(
+* build a simple app, follow:
+  https://cloud.google.com/container-engine/docs/tutorials/hello-node
+  * write the Dockerfile
+  * write a simple binary and build it
+  * set env: `export PROJECT_ID=josh-cs3-2014`
+  * build image: `sudo docker build -t gcr.io/${PROJECT_ID}/hello-world:v1 .`
+  * see that it built: `docker images`
+  * push image: `gcloud docker push gcr.io/${PROJECT_ID}/hello-world:v1`
+* run the app
+  * might already have something running: `gcloud compute instances list`
+  * else: `gcloud container clusters create cluster-1 --num-nodes 1 --machine-type g1-small`
+  * run the job: `kubectl run cluster-1 --image=gcr.io/${PROJECT_ID}/hello-node:v1 --port=8080`
+  * allow traffic: `kubectl expose rc cluster-1 --type="LoadBalancer"`
+  * check the IP: `kubectl get services cluster-1`
+* clean up
+  * `kubectl delete services cluster-1`
+  * `kubectl delete rc cluster-1`
+  * `gcloud container clusters delete cluster-1`
