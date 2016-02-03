@@ -1,0 +1,10 @@
+port 1080;
+
+handler hwHandler {
+  location /HelloWorld;
+}
+
+handler sfHandler {
+  location /static;
+  document_root filez/;
+}

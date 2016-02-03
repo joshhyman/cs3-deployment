@@ -26,11 +26,13 @@ https://cloud.google.com/container-engine/docs/before-you-begin
   * write the Dockerfile
   * write a simple binary and build it
   * set env: `export PROJECT_ID=josh-cs3-2014`
-  * build image: `sudo docker build -t gcr.io/${PROJECT_ID}/hello-world:v1 .`
+  * build image: `docker build -t gcr.io/${PROJECT_ID}/hello-world:v1 .`
   * see that it built: `docker images`
+  * run it locally: `docker run -i -t gcr.io/${PROJECT_ID}/hello-world:v1 /bin/bash`
+* push the image
   * push image: `gcloud docker push gcr.io/${PROJECT_ID}/hello-world:v1`
 * run the app
-  * might already have something running: `gcloud clusters instances list`
+  * might already have something running: `gcloud container clusters list`
   * else: `gcloud container clusters create cluster-1 --num-nodes 1 --machine-type g1-small`
   * run the job: `kubectl run cluster-1 --image=gcr.io/${PROJECT_ID}/hello-node:v1 --port=8080`
   * allow traffic: `kubectl expose rc cluster-1 --type="LoadBalancer"`
