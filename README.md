@@ -30,11 +30,16 @@ https://cloud.google.com/container-engine/docs/before-you-begin
   * see that it built: `docker images`
   * push image: `gcloud docker push gcr.io/${PROJECT_ID}/hello-world:v1`
 * run the app
-  * might already have something running: `gcloud compute instances list`
+  * might already have something running: `gcloud clusters instances list`
   * else: `gcloud container clusters create cluster-1 --num-nodes 1 --machine-type g1-small`
   * run the job: `kubectl run cluster-1 --image=gcr.io/${PROJECT_ID}/hello-node:v1 --port=8080`
   * allow traffic: `kubectl expose rc cluster-1 --type="LoadBalancer"`
   * check the IP: `kubectl get services cluster-1`
+* debugging
+  * find the node name: `kubectl get pods -o wide`
+  * ssh to the node: `gcloud compute ssh $NODE`
+  * see what containers ever ran: `sudo docker ps -a`
+  * attempt to run your container: `sudo docker run foo`
 * clean up
   * `kubectl delete services cluster-1`
   * `kubectl delete rc cluster-1`
