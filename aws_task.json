@@ -1,0 +1,48 @@
+{
+  "requiresAttributes": [
+    {
+      "value": null,
+      "name": "com.amazonaws.ecs.capability.ecr-auth"
+    }
+  ],
+  "taskDefinitionArn": "arn:aws:ecs:us-west-2:640141239503:task-definition/josh-httpserver:1",
+  "status": "ACTIVE",
+  "revision": 1,
+  "containerDefinitions": [
+    {
+      "volumesFrom": [],
+      "memory": 300,
+      "extraHosts": null,
+      "dnsServers": null,
+      "disableNetworking": null,
+      "dnsSearchDomains": null,
+      "portMappings": [
+        {
+          "hostPort": 1080,
+          "containerPort": 1080,
+          "protocol": "tcp"
+        }
+      ],
+      "hostname": null,
+      "essential": true,
+      "entryPoint": [],
+      "mountPoints": [],
+      "name": "josh-webserver",
+      "ulimits": null,
+      "dockerSecurityOptions": null,
+      "environment": [],
+      "links": [],
+      "workingDirectory": null,
+      "readonlyRootFilesystem": null,
+      "image": "640141239503.dkr.ecr.us-west-2.amazonaws.com/josh:latest",
+      "command": [],
+      "user": null,
+      "dockerLabels": null,
+      "logConfiguration": null,
+      "cpu": 10,
+      "privileged": null
+    }
+  ],
+  "volumes": [],
+  "family": "josh-httpserver"
+}
